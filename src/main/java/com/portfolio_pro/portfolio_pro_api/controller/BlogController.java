@@ -3,7 +3,6 @@ package com.portfolio_pro.portfolio_pro_api.controller;
 import com.portfolio_pro.portfolio_pro_api.entity.Blog;
 import com.portfolio_pro.portfolio_pro_api.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -50,5 +49,10 @@ public class BlogController {
     @DeleteMapping("/{blogId}")
     public void deleteBlogById(@PathVariable("blogId") Long blogId) {
         blogService.deleteBlog(blogId);
+    }
+
+    @DeleteMapping
+    public void deleteAllBlogs(@RequestBody List<Long> ids) {
+        blogService.deleteBlogs(ids);
     }
 }
