@@ -8,28 +8,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/skills")
 public class SkillController {
 
     @Autowired
     private SkillService skillService;
 
-    @GetMapping
+    @GetMapping("${portfolio-pro.api.skill.url}")
     List<Skill> getSkills() {
         return skillService.findAll();
     }
 
-    @PostMapping
+    @PostMapping("${portfolio-pro.api.skill.url}")
     Skill createSkill(@RequestBody Skill skill) {
         return skillService.createSkill(skill);
     }
 
-    @DeleteMapping("/{skillId}")
+    @DeleteMapping("${portfolio-pro.api.skill.delete.url}")
     void deleteSkill(@PathVariable("skillId") Long id) {
         skillService.deleteSkill(id);
     }
 
-    @DeleteMapping
+    @DeleteMapping("${portfolio-pro.api.skill.url}")
     void deleteSkills(@RequestBody List<Long> ids) {
         skillService.deleteSkills(ids);
     }
