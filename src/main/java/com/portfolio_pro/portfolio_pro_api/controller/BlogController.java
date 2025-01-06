@@ -18,12 +18,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/blogs")
 public class BlogController {
     @Autowired
     private BlogService blogService;
 
-    @GetMapping
+    @GetMapping("${portfolio-pro.api.blogs.url}")
     public List<Blog> findAllBlogs(
             @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
@@ -36,22 +35,22 @@ public class BlogController {
         return blogService.findAllBlogs(pageable).getContent();
     }
 
-    @PostMapping
+    @PostMapping("${portfolio-pro.api.blogs.url}")
     public Blog createBlog(@RequestBody Blog blog) {
         return blogService.createBlog(blog);
     }
 
-    @GetMapping("/{blogId}")
+    @GetMapping("${portfolio-pro.api.blogs.detail.url}")
     public Blog findBlogById(@PathVariable("blogId") Long blogId) {
         return blogService.findBlogById(blogId);
     }
 
-    @DeleteMapping("/{blogId}")
+    @DeleteMapping("${portfolio-pro.api.blogs.detail.url}")
     public void deleteBlogById(@PathVariable("blogId") Long blogId) {
         blogService.deleteBlog(blogId);
     }
 
-    @DeleteMapping
+    @DeleteMapping("${portfolio-pro.api.blogs.url}")
     public void deleteAllBlogs(@RequestBody List<Long> ids) {
         blogService.deleteBlogs(ids);
     }
